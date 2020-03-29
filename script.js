@@ -89,9 +89,8 @@ function renderCountryUI(data, query) {
 async function getResultByCountry() {
   const query = searchInput.value;
   searchInput.value = '';
-  removeUI();
-
   loader(true);
+  removeUI();
   const res = await fetch(API + `/countries/${query}`);
   const dataCountry = await res.json();
   loader(false);
