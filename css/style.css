@@ -46,9 +46,12 @@ h3 {
   font-size: 35px;
 }
 
+.worldwide {
+  margin: 3rem auto;
+}
+
 .grid {
   display: grid;
-  margin: 2rem 0;
   grid-template-columns: 1fr 1fr;
   max-width: 650px;
   margin: 0 auto;
@@ -68,7 +71,7 @@ h3 {
   background-color: rgba(228, 30, 30, 0.678);
 }
 
-.recoveries {
+.recovered {
   background-color: #0080009e;
 }
 
@@ -88,4 +91,72 @@ h3 {
     grid-column-start: 1;
     grid-column-end: 3;
   }
+}
+
+form {
+  margin: 2rem auto;
+  position: relative;
+}
+
+.country-name {
+  margin-top: 2rem;
+}
+
+.search,
+.search-btn {
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+}
+
+.search:focus,
+.search-btn:focus {
+  border: none;
+}
+
+.search-btn {
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  transform: scale(1.1);
+  translate: transform 0.5s ease;
+}
+
+.loader svg {
+  margin-top: 100px;
+  height: 3rem;
+  width: 3rem;
+  fill: rgb(54, 53, 53);
+  animation: rotate 1.3s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 290px) {
+  .search {
+    width: 80%;
+  }
+}
+
+footer {
+  margin-top: 3rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(255, 3, 3);
+}
+
+a:hover {
+  color: blue;
 }
