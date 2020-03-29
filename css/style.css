@@ -45,6 +45,7 @@ h6 {
 h3 {
   font-size: 35px;
 }
+
 .grid {
   display: grid;
   margin: 2rem 0;
@@ -61,6 +62,18 @@ h3 {
   text-align: left;
   padding: 1.5rem;
   border-radius: 15px;
+}
+
+.active {
+  background-color: rgba(228, 30, 30, 0.678);
+}
+
+.recoveries {
+  background-color: #0080009e;
+}
+
+.deaths {
+  background-color: #000000b3;
 }
 
 .g-heading {
