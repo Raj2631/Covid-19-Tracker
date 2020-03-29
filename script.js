@@ -66,7 +66,7 @@ function renderCountryUI(data, query) {
   <div class="grid">
     <div class="g-box cases">
       <h6 class="g-heading">Total Cases</h6>
-      <h3 id="total-cases">${data.confirmed.value}</h3>
+      <h3 id="total-cases">${formatData(data.confirmed.value)}</h3>
     </div>
     <div class="g-box active">
       <h6 class="g-heading">Total Active</h6>
@@ -75,11 +75,11 @@ function renderCountryUI(data, query) {
 
     <div class="g-box recovered">
       <h6 class="g-heading">Total recovered</h6>
-      <h3 id="total-recovered" >${data.recovered.value}</h3>
+      <h3 id="total-recovered" >${formatData(data.recovered.value)}</h3>
     </div>
     <div class="g-box deaths">
       <h6 class="g-heading">Total Deaths</h6>
-      <h3 id="total-deaths" >${data.deaths.value}</h3>
+      <h3 id="total-deaths" >${formatData(data.deaths.value)}</h3>
     </div>
   </div>
   `;
