@@ -60,43 +60,61 @@ function loader(flag) {
   resultsContainer.insertAdjacentHTML('afterbegin', load);
 }
 
-function renderCountryUI(data, query) {
-  const markup = `
-  <h2 class="country-name">${query}</h2>
-  <div class="grid">
-    <div class="g-box cases">
-      <h6 class="g-heading">Total Cases</h6>
-      <h3 id="total-cases">${formatData(data.confirmed.value)}</h3>
-    </div>
-    <div class="g-box active">
-      <h6 class="g-heading">Total Active</h6>
-      <h3 id="total-active">${getTotalActive(data)}</h3>
-    </div>
+function renderCountryUI(flag, data, query) {
+  let markup;
+  if (flag === true) {
+    markup = `
+      <h2 class="country-name">${query}</h2>
+      <div class="grid">
+        <div class="g-box cases">
+          <h6 class="g-heading">Total Cases</h6>
+          <h3 id="total-cases">${formatData(data.confirmed.value)}</h3>
+        </div>
+        <div class="g-box active">
+          <h6 class="g-heading">Total Active</h6>
+          <h3 id="total-active">${getTotalActive(data)}</h3>
+        </div>
 
-    <div class="g-box recovered">
-      <h6 class="g-heading">Total recovered</h6>
-      <h3 id="total-recovered" >${formatData(data.recovered.value)}</h3>
-    </div>
-    <div class="g-box deaths">
-      <h6 class="g-heading">Total Deaths</h6>
-      <h3 id="total-deaths" >${formatData(data.deaths.value)}</h3>
-    </div>
-  </div>
-  `;
+        <div class="g-box recovered">
+          <h6 class="g-heading">Total recovered</h6>
+          <h3 id="total-recovered" >${formatData(data.recovered.value)}</h3>
+        </div>
+        <div class="g-box deaths">
+          <h6 class="g-heading">Total Deaths</h6>
+          <h3 id="total-deaths" >${formatData(data.deaths.value)}</h3>
+        </div>
+      </div>
+    `;
+  } else {
+    markup = '<h2>Please enter a valid country</h2>';
+  }
+
   resultsContainer.innerHTML = markup;
 }
 
+function formatToUpper(query) {
+  const queryArr = query.split(' ');
+  const upperArr = queryArr.map(
+    el => el.slice(0, 1).toUpperCase() + el.slice(1, el.length)
+  );
+  return upperArr.join(' ');
+}
+
 async function getResultByCountry() {
-  const query = searchInput.value;
-  searchInput.value = '';
-
-  removeUI();
-  loader(true);
-  const res = await fetch(API + `/countries/${query}`);
-  const dataCountry = await res.json();
-  loader(false);
-
-  renderCountryUI(dataCountry, query);
+  try {
+    let query = searchInput.value;
+    searchInput.value = '';
+    query = formatToUpper(query);
+    removeUI();
+    loader(true);
+    const res = await fetch(API + `/countries/${query}`);
+    const dataCountry = await res.json();
+    loader(false);
+    renderCountryUI(true, dataCountry, query);
+  } catch (e) {
+    loader(false);
+    renderCountryUI(false);
+  }
 }
 
 search.addEventListener('submit', e => {
